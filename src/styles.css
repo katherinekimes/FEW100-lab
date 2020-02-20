@@ -2,12 +2,19 @@ h1 {
     color:black;
 }
 
-button.btn {
-    background-color: grey;
+.selected {
+    background-color: lightblue;
     color: white;
     font-weight: bold;
 }
 
-.selected {
-    background-color: lightskyblue;
+.deselected {
+    background-color:grey;
+    color: white;
+    font-weight: bold;
+}
+
+#total-bar {
+    font-style: italic;
+    font-weight: bold;
 }

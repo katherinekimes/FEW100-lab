@@ -5,7 +5,7 @@ const displayBillAmount = document.getElementById('displayBillAmount') as HTMLSp
 const displayTipPercent = document.getElementById('displayTipPercent') as HTMLSpanElement;
 const displayTipAmount = document.getElementById('displayTipAmount') as HTMLSpanElement;
 const displayTotal = document.getElementById('displayTotal') as HTMLSpanElement;
-const buttons = document.querySelectorAll('.btn') as NodeListOf<HTMLButtonElement>;
+const buttons = document.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
 const tenButton = document.getElementById('tenButton') as HTMLButtonElement;
 const fifteenButton = document.getElementById('fifteenButton') as HTMLButtonElement;
 const twentyButton = document.getElementById('twentyButton') as HTMLButtonElement;
@@ -20,12 +20,20 @@ function handleClick() {
     displayTipPercent.innerText = this.innerText;
     tipPercent.innerText = this.innerText;
     const percent = parseInt(displayTipPercent.innerText);
-    let bill = parseFloat(inputBillAmount.value);
-    let tip = bill * (percent/100);
-    let total = tip + bill;
+    const bill = parseFloat(inputBillAmount.value);
+    const tip = bill * (percent / 100);
+    const total = tip + bill;
     displayTipAmount.innerText = tip.toFixed(2).toString();
     displayTotal.innerText = total.toFixed(2).toString();
-}
 
+    const that = this as HTMLButtonElement;
+        that.classList.add('selected');
+
+        buttons.forEach(btn => {
+            if (btn !== that) {
+                btn.classList.remove('selected');
+            }
+        });
+    }
 
 
