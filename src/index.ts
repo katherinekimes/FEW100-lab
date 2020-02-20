@@ -16,19 +16,32 @@ fifteenButton.addEventListener('click', handleClick);
 twentyButton.addEventListener('click', handleClick);
 
 function handleClick() {
-    displayBillAmount.innerText = (parseFloat(inputBillAmount.value).toFixed(2).toString());
-    displayTipPercent.innerText = this.innerText;
-    tipPercent.innerText = this.innerText;
+
     const percent = parseInt(displayTipPercent.innerText);
     const bill = parseFloat(inputBillAmount.value);
     const tip = bill * (percent / 100);
     const total = tip + bill;
+
+    if (parseFloat(inputBillAmount.value) < 0)
+    {
+        inputBillAmount.classList.add('error');
+        inputBillAmount.value = '';
+        return;
+    }
+    else 
+    {
+        inputBillAmount.classList.remove('error');
+    }
+
+    displayBillAmount.innerText = (parseFloat(inputBillAmount.value).toFixed(2).toString());
+
+    displayTipPercent.innerText = this.innerText;
+    tipPercent.innerText = this.innerText;
     displayTipAmount.innerText = tip.toFixed(2).toString();
     displayTotal.innerText = total.toFixed(2).toString();
 
     const that = this as HTMLButtonElement;
         that.classList.add('selected');
-
         buttons.forEach(btn => {
             if (btn !== that) {
                 btn.classList.remove('selected');
