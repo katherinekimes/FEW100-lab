@@ -1,3 +1,13 @@
 h1 {
-    color:red;
+    color:black;
+}
+
+button.btn {
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+}
+
+.selected {
+    background-color: lightskyblue;
 }
