@@ -16,40 +16,38 @@ fifteenButton.addEventListener('click', handleClick);
 twentyButton.addEventListener('click', handleClick);
 
 function handleClick() {
-
-    // Converts all inputs to numbers; performs calculations
-    const percent = parseInt(displayTipPercent.innerText);
-    const bill = parseFloat(inputBillAmount.value);
-    const tip = bill * (percent / 100);
-    const total = tip + bill;
-
-    // Prevents bill amounts less than 0 from being entered
-    if (parseFloat(inputBillAmount.value) < 0)
-    {
-        inputBillAmount.classList.add('error');
-        inputBillAmount.value = '';
-        return;
-    }
-    else 
-    {
-        inputBillAmount.classList.remove('error');
-    }
-
-    // Converts amounts back to strings for display onscreen
-    displayBillAmount.innerText = (parseFloat(inputBillAmount.value).toFixed(2).toString());
-    displayTipPercent.innerText = this.innerText;
-    tipPercent.innerText = this.innerText;
-    displayTipAmount.innerText = tip.toFixed(2).toString();
-    displayTotal.innerText = total.toFixed(2).toString();
+       // Prevents bill amounts less than 0 from being entered
+       if (parseFloat(inputBillAmount.value) < 0)
+       {
+           inputBillAmount.classList.add('error');
+           inputBillAmount.value = '';
+           return;
+       }
+       else 
+       {
+           inputBillAmount.classList.remove('error');
+       }
 
     // Toggles highlight on selected tip button
     const that = this as HTMLButtonElement;
-        that.classList.add('selected');
-        buttons.forEach(btn => {
-            if (btn !== that) {
-                btn.classList.remove('selected');
-            }
-        });
-    }
+    that.classList.add('selected');
+    buttons.forEach(btn => {
+        if (btn !== that) {
+            btn.classList.remove('selected');
+        }
+    });
 
+    const percent = parseInt(this.innerText);
+    displayTipPercent.innerText = this.innerText;
+    tipPercent.innerText = this.innerText;
+
+    const bill = parseFloat(inputBillAmount.value);
+    displayBillAmount.innerText = (parseFloat(inputBillAmount.value).toFixed(2).toString());
+
+    const tip = bill * (percent / 100);
+    displayTipAmount.innerText = tip.toFixed(2).toString();
+
+    const total = tip + bill;
+    displayTotal.innerText = total.toFixed(2).toString();
+}
 
